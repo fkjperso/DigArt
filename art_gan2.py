@@ -19,9 +19,9 @@ import os
 PREVIEW_ROWS = 4
 PREVIEW_COLS = 7
 PREVIEW_MARGIN = 4
-SAVE_FREQ = 100# Size vector to generate images from
+SAVE_FREQ = 9# Size vector to generate images from
 NOISE_SIZE = 100# Configuration
-EPOCHS = 10000 # number of iterations
+EPOCHS = 1000 # number of iterations
 BATCH_SIZE = 32
 GENERATE_RES = 3
 IMAGE_SIZE = 128 # rows/colsIMAGE_CHANNELS = 3
@@ -110,9 +110,6 @@ def save_images(cnt, noise):
 
 
 
-IMAGE_SIZE = 128
-IMAGE_CHANNELS = 3
-
 image_shape = (IMAGE_SIZE, IMAGE_SIZE, IMAGE_CHANNELS)
 optimizer = Adam(1.5e-4, 0.5)
 discriminator = build_discriminator(image_shape)
@@ -123,6 +120,7 @@ random_input = Input(shape=(NOISE_SIZE,))
 
 generated_image = generator(random_input)
 discriminator.trainable = False
+
 validity = discriminator(generated_image)
 combined = Model(random_input, validity)
 combined.compile(loss="binary_crossentropy",optimizer=optimizer, metrics=["accuracy"])
