@@ -19,7 +19,7 @@ import os
 PREVIEW_ROWS = 4
 PREVIEW_COLS = 7
 PREVIEW_MARGIN = 4
-SAVE_FREQ = 8# Size vector to generate images from
+SAVE_FREQ = 100# Size vector to generate images from
 NOISE_SIZE = 100# Configuration
 EPOCHS = 10000 # number of iterations
 BATCH_SIZE = 32
@@ -28,7 +28,7 @@ IMAGE_SIZE = 128 # rows/colsIMAGE_CHANNELS = 3
 IMAGE_CHANNELS = 3
 
 
-training_data = np.load('cubism_data.npy')
+training_data = np.load('test_data.npy')
 
 #training_data = np.load(os.path.join(‘dirname’, ‘filename.npy’))
 
