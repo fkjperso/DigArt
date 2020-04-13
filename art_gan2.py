@@ -25,6 +25,7 @@ EPOCHS = 1000 # number of iterations
 BATCH_SIZE = 32
 GENERATE_RES = 3
 IMAGE_SIZE = 128 # rows/colsIMAGE_CHANNELS = 3
+IMAGE_CHANNELS = 3
 
 
 training_data = np.load('cubism_data.npy')
