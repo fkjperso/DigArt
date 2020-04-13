@@ -19,9 +19,9 @@ import os
 PREVIEW_ROWS = 4
 PREVIEW_COLS = 7
 PREVIEW_MARGIN = 4
-SAVE_FREQ = 9# Size vector to generate images from
+SAVE_FREQ = 10# Size vector to generate images from
 NOISE_SIZE = 100# Configuration
-EPOCHS = 1000 # number of iterations
+EPOCHS = 10000 # number of iterations
 BATCH_SIZE = 32
 GENERATE_RES = 3
 IMAGE_SIZE = 128 # rows/colsIMAGE_CHANNELS = 3
