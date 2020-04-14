@@ -104,7 +104,8 @@ def save_images(cnt, noise):
     image_count += 1
     output_path = 'output'
     if not os.path.exists(output_path):
-        os.makedirs(output_path)filename = os.path.join(output_path, f"trained-{cnt}.png")
+        os.makedirs(output_path)
+    filename = os.path.join(output_path, f"trained-{cnt}.png")
     im = Image.fromarray(image_array)
     im.save(filename)
 
