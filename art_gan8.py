@@ -29,7 +29,7 @@ IMAGE_SIZE = 500 # rows/colsIMAGE_CHANNELS = 3
 IMAGE_CHANNELS = 3
 
 
-training_data = np.load('blawhi_data500pix.npy')
+training_data = np.load('test_data500pix.npy')
 
 #training_data = np.load(os.path.join(‘dirname’, ‘filename.npy’))
 
