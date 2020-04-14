@@ -101,7 +101,8 @@ def save_images(cnt, noise):
             c = col * (IMAGE_SIZE + PREVIEW_MARGIN) + PREVIEW_MARGIN
             image_array[r:r + IMAGE_SIZE, c:c +
                         IMAGE_SIZE] = generated_images[image_count] * 255
-    image_count += 1
+            image_count += 1
+    
     output_path = 'output'
     if not os.path.exists(output_path):
         os.makedirs(output_path)
@@ -143,8 +144,8 @@ for epoch in range(EPOCHS):
     generator_metric = combined.train_on_batch(noise, y_real)
     if epoch % SAVE_FREQ == 0:
         save_images(cnt, fixed_noise)
-    cnt += 1
-    print(f"{epoch} epoch, Discriminator accuracy: {100*  discriminator_metric[1]}, Generator accuracy: {100 * generator_metric[1]}")
+        cnt += 1
+        print(f"{epoch} epoch, Discriminator accuracy: {100*  discriminator_metric[1]}, Generator accuracy: {100 * generator_metric[1]}")
 
 
 
