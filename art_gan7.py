@@ -25,11 +25,11 @@ NOISE_SIZE = 100# Configuration
 EPOCHS = 10000 # number of iterations
 BATCH_SIZE = 32
 GENERATE_RES = 3
-IMAGE_SIZE = 128 # rows/colsIMAGE_CHANNELS = 3
+IMAGE_SIZE = 500 # rows/colsIMAGE_CHANNELS = 3
 IMAGE_CHANNELS = 3
 
 
-training_data = np.load('blawhi_data.npy')
+training_data = np.load('blawhi_data500pix.npy')
 
 #training_data = np.load(os.path.join(‘dirname’, ‘filename.npy’))
 
