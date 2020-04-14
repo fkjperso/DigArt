@@ -112,6 +112,8 @@ def save_images(cnt, noise):
 
 
 
+IMAGE_SIZE = 500
+IMAGE_CHANNELS = 3
 
 image_shape = (IMAGE_SIZE, IMAGE_SIZE, IMAGE_CHANNELS)
 optimizer = Adam(1.5e-4, 0.5)
@@ -135,7 +137,7 @@ fixed_noise = np.random.normal(0, 1, (PREVIEW_ROWS * PREVIEW_COLS, NOISE_SIZE))
 cnt = 1
 for epoch in range(EPOCHS):
     print("controles")
-    print(training_data.shape[0])
+    print(training_data.shape)
     idx = np.random.randint(0, training_data.shape[0], BATCH_SIZE)
     x_real = training_data[idx]
     noise= np.random.normal(0, 1, (BATCH_SIZE, NOISE_SIZE))
