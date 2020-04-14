@@ -23,13 +23,13 @@ PREVIEW_MARGIN = 4
 SAVE_FREQ = 100# Size vector to generate images from
 NOISE_SIZE = 100# Configuration
 EPOCHS = 10000 # number of iterations
-BATCH_SIZE = 32
+BATCH_SIZE = 12
 GENERATE_RES = 3
 IMAGE_SIZE = 128 # rows/colsIMAGE_CHANNELS = 3
 IMAGE_CHANNELS = 3
 
 
-training_data = np.load('test2_data.npy')
+training_data = np.load('test_data.npy')
 
 #training_data = np.load(os.path.join(‘dirname’, ‘filename.npy’))
 
