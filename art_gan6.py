@@ -29,7 +29,7 @@ IMAGE_SIZE = 128 # rows/colsIMAGE_CHANNELS = 3
 IMAGE_CHANNELS = 3
 
 
-training_data = np.load('test_data.npy')
+training_data = np.load('test2_data.npy')
 
 #training_data = np.load(os.path.join(‘dirname’, ‘filename.npy’))
 
