@@ -77,15 +77,19 @@ def build_generator(noise_size, channels):
     model.add(Conv2D(256, kernel_size=3, padding="same"))
     model.add(BatchNormalization(momentum=0.8))
     model.add(Activation("relu"))    
+    model.add(UpSampling2D())
+    model.add(Conv2D(256, kernel_size=3, padding="same"))
+    model.add(BatchNormalization(momentum=0.8))
+    model.add(Activation("relu"))   
     for i in range(GENERATE_RES):
          model.add(UpSampling2D())
          model.add(Conv2D(256, kernel_size=3, padding="same"))
          model.add(BatchNormalization(momentum=0.8))
          model.add(Activation("relu"))    
          model.summary()
+    #model.add(UpSampling2D())
     model.add(Conv2D(channels, kernel_size=3, padding="same"))
     model.add(Activation("tanh")) 
-    model.add(UpSampling2D())
     input = Input(shape=(noise_size,))
     generated_image = model(input)
     return Model(input, generated_image)
@@ -140,9 +144,9 @@ fixed_noise = np.random.normal(0, 1, (PREVIEW_ROWS * PREVIEW_COLS, NOISE_SIZE))
 
 cnt = 1
 for epoch in range(EPOCHS):
-    print("controles")
-    print(epoch)
-    print(training_data.shape)
+    #print("controles")
+    #print(epoch)
+    #print(training_data.shape)
     idx = np.random.randint(0, training_data.shape[0], BATCH_SIZE)
     x_real = training_data[idx]
     noise= np.random.normal(0, 1, (BATCH_SIZE, NOISE_SIZE))
