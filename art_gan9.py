@@ -64,43 +64,16 @@ def build_discriminator(image_shape):
     return Model(input_image, validity)
 
 
-def build_generatorb2(noise_size, channels,nfake):
-    model = Sequential()
-    model.add(Dense(4 * 4 * nfake, activation="relu",       input_dim=noise_size))
-    model.add(Reshape((4, 4, nfake)))    
-    model.add(UpSampling2D())
-    model.add(Conv2D(nfake, kernel_size=3, padding="same"))
-    model.add(BatchNormalization(momentum=0.8))
-    model.add(Activation("relu"))    
-    model.add(UpSampling2D())
-    model.add(Conv2D(nfake, kernel_size=3, padding="same"))
-    model.add(BatchNormalization(momentum=0.8))
-    model.add(Activation("relu"))    
-    for i in range(GENERATE_RES):
-         model.add(UpSampling2D())
-         model.add(Conv2D(nfake, kernel_size=3, padding="same"))
-         model.add(BatchNormalization(momentum=0.8))
-         model.add(Activation("relu"))    
-         model.summary()
-    model.add(Conv2D(channels, kernel_size=3, padding="same"))
-    model.add(Activation("tanh"))    
-    input = Input(shape=(noise_size,))
-    generated_image = model(input)
-    return Model(input, generated_image)
-
 
 def build_generator(noise_size, channels):
     model = Sequential()
-    model.add(Dense(128*8*8, activation="relu",       input_dim=noise_size))
-    model.add(Reshape((8,8,128)))    
-    #reshape(g1, [-1, 56, 56, 1])
-    #model.add(Reshape((256,256,3), input_shape=(128,128,3)))
+    model.add(Dense(4 * 4 * 256, activation="relu",       input_dim=noise_size))
+    model.add(Reshape((4, 4, 256)))    
     model.add(UpSampling2D())
     model.add(Conv2D(256, kernel_size=3, padding="same"))
     model.add(BatchNormalization(momentum=0.8))
     model.add(Activation("relu"))    
     model.add(UpSampling2D())
-    #model.add(Conv2DTranspose(256,4,strides=2,padding='same'))
     model.add(Conv2D(256, kernel_size=3, padding="same"))
     model.add(BatchNormalization(momentum=0.8))
     model.add(Activation("relu"))    
@@ -111,17 +84,11 @@ def build_generator(noise_size, channels):
          model.add(Activation("relu"))    
          model.summary()
     model.add(Conv2D(channels, kernel_size=3, padding="same"))
-    model.add(Activation("tanh"))  
-    #model.add(UpSampling2D(size=(256,256,3))
-    #model.add(Reshape((256, 256,3)))
-    #model.add(Reshape(256,256))
-    #model.add(Activation("tanh")) 
-    #model.add(Reshape((256,256,3)))
-    #model.add(Reshape((256,256,3), input_shape=(128,128,3)))
+    model.add(Activation("tanh")) 
+    model.add(UpSampling2D())
     input = Input(shape=(noise_size,))
     generated_image = model(input)
     return Model(input, generated_image)
-
 
 
 def save_images(cnt, noise):
