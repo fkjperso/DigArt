@@ -23,7 +23,7 @@ PREVIEW_MARGIN = 4
 SAVE_FREQ = 100# Size vector to generate images from
 NOISE_SIZE = 100# Configuration
 EPOCHS = 10000 # number of iterations
-BATCH_SIZE = 32
+BATCH_SIZE = 26
 GENERATE_RES = 3
 IMAGE_SIZE = 256 # rows/colsIMAGE_CHANNELS = 3
 IMAGE_CHANNELS = 3
@@ -86,7 +86,7 @@ def build_generator(noise_size, channels):
          model.summary()
     model.add(UpSampling2D())
     model.add(Conv2D(channels, kernel_size=3, padding="same"))
-    model.add(Activation("relu")) 
+    model.add(Activation("tanh")) 
     input = Input(shape=(noise_size,))
     generated_image = model(input)
     return Model(input, generated_image)
