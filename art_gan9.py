@@ -25,11 +25,12 @@ NOISE_SIZE = 100# Configuration
 EPOCHS = 10000 # number of iterations
 BATCH_SIZE = 32
 GENERATE_RES = 3
-IMAGE_SIZE = 500 # rows/colsIMAGE_CHANNELS = 3
+IMAGE_SIZE = 256 # rows/colsIMAGE_CHANNELS = 3
 IMAGE_CHANNELS = 3
 nfake=IMAGE_SIZE*2
 
-training_data = np.load('blawhi_data500pix.npy')
+#training_data = np.load('blawhi_data500pix.npy')
+training_data = np.load('blawhi_data256pix.npy')
 
 
 #training_data = np.load(os.path.join(‘dirname’, ‘filename.npy’))
@@ -88,21 +89,21 @@ def build_generatorb2(noise_size, channels,nfake):
     return Model(input, generated_image)
 
 
-def build_generator(noise_size, channels,dim):
+def build_generator(noise_size, channels):
     model = Sequential()
-    model.add(Dense(4 * 4 * 2*dim, activation="relu",       input_dim=noise_size))
-    model.add(Reshape((4, 4, 2*dim)))    
+    model.add(Dense(8 * 8 * 256, activation="relu",       input_dim=noise_size))
+    model.add(Reshape((8, 8, 256)))    
     model.add(UpSampling2D())
-    model.add(Conv2D(2*dim, kernel_size=3, padding="same"))
+    model.add(Conv2D(256, kernel_size=3, padding="same"))
     model.add(BatchNormalization(momentum=0.8))
     model.add(Activation("relu"))    
     model.add(UpSampling2D())
-    model.add(Conv2D(2*dim, kernel_size=3, padding="same"))
+    model.add(Conv2D(256, kernel_size=3, padding="same"))
     model.add(BatchNormalization(momentum=0.8))
     model.add(Activation("relu"))    
     for i in range(GENERATE_RES):
          model.add(UpSampling2D())
-         model.add(Conv2D(2*dim, kernel_size=3, padding="same"))
+         model.add(Conv2D(256, kernel_size=3, padding="same"))
          model.add(BatchNormalization(momentum=0.8))
          model.add(Activation("relu"))    
          model.summary()
@@ -139,8 +140,6 @@ def save_images(cnt, noise):
 
 
 
-IMAGE_SIZE = 500
-IMAGE_CHANNELS = 3
 
 image_shape = (IMAGE_SIZE, IMAGE_SIZE, IMAGE_CHANNELS)
 
@@ -148,7 +147,7 @@ image_shape = (IMAGE_SIZE, IMAGE_SIZE, IMAGE_CHANNELS)
 optimizer = Adam(1.5e-4, 0.5)
 discriminator = build_discriminator(image_shape)
 discriminator.compile(loss="binary_crossentropy",optimizer=optimizer, metrics=["accuracy"])
-generator = build_generator(NOISE_SIZE, IMAGE_CHANNELS,nfake)
+generator = build_generator(NOISE_SIZE, IMAGE_CHANNELS)
 random_input = Input(shape=(NOISE_SIZE,))
 
 
