@@ -86,7 +86,7 @@ def build_generator(noise_size, channels):
          model.summary()
     model.add(UpSampling2D())
     model.add(Conv2D(channels, kernel_size=3, padding="same"))
-    model.add(Activation("softmax")) 
+    model.add(Activation("relu")) 
     input = Input(shape=(noise_size,))
     generated_image = model(input)
     return Model(input, generated_image)
