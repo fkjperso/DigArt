@@ -30,7 +30,7 @@ IMAGE_CHANNELS = 3
 nfake=IMAGE_SIZE*2
 
 #training_data = np.load('blawhi_data500pix.npy')
-training_data = np.load('blawhi_data256pix.npy')
+training_data = np.load('divers_data256pix.npy')
 
 
 #training_data = np.load(os.path.join(‘dirname’, ‘filename.npy’))
